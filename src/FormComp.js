@@ -25,6 +25,31 @@ class FormComp extends Component {
     const name = e.target.name;
     const value = e.target.value;
     console.log(name+": "+value);
+    if(name === 'temp'){
+      if(value <= 15 ){
+        this.state.formErrors.tempErr = 'Temp cannot be less than 15';
+      }else if(value >= 55 ){
+        this.state.formErrors.tempErr = 'Temp cannot be greater than 55';
+      }else{
+        this.state.formErrors.tempErr = '';
+      }
+    }else if(name === 'oxygenLevel'){
+      if(value <= 30 ){
+        this.state.formErrors.oxygenLevelErr = 'Oxygen Level cannot be less than 30';
+      }else if(value >= 80 ){
+        this.state.formErrors.oxygenLevelErr = 'Oxygen Level cannot be greater than 80';
+      }else{
+        this.state.formErrors.oxygenLevelErr = '';
+      }
+    }else if(name === 'humidity'){
+      if(value <= 5 ){
+        this.state.formErrors.humidityErr = 'Humidity cannot be less than 5';
+      }else if(value >= 65 ){
+        this.state.formErrors.humidityErr = 'Humidity cannot be greater than 65';
+      }else{
+        this.state.formErrors.humidityErr = '';
+      }
+    }else{ }
     this.setState({ [name]: value });
   }
 
@@ -37,32 +62,13 @@ class FormComp extends Component {
     }else{
       val = 'Good';
     }
-
-    if(this.state.temp < 15 ){
-      this.state.formErrors.tempErr = 'Temp cannot be less than 15';
-    }else{
-      this.state.formErrors.tempErr = '';
-    }
-
-    if(this.state.oxygenLevel < 30 ){
-      this.state.formErrors.oxygenLevelErr = 'Oxygen Level cannot be less than 30';
-    }else{
-      this.state.formErrors.oxygenLevelErr = '';
-    }
-
-    if(this.state.humidity < 5 ){
-      this.state.formErrors.humidityErr = 'Humidity cannot be less than 5';
-    }else{
-      this.state.formErrors.humidityErr = '';
-    }
-
     this.setState({Health: val});
   }
 
   render() {
 
     return (
-      <div className="App Main">
+      <div className="App">
 
         <Box direction='row' pad={{between: 'large'}} >          
           <Box>            
@@ -104,7 +110,10 @@ class FormComp extends Component {
               <NumberInput name='oxygenLevel' value={this.state.oxygenLevel} step={10}
                           onChange={(e) => this.handleUserInput(e)} />
             </FormField>
-            <Button onClick={this.SubmitForm} primary={true} label='Check' style={{margin: '10px 0'}} />
+            {this.state.formErrors.tempErr === '' && this.state.formErrors.humidityErr === '' && this.state.formErrors.oxygenLevelErr === '' ?
+              <Button onClick={this.SubmitForm} primary={true} label='Check' style={{margin: '10px 0'}} /> 
+            :
+              <Button primary={true} label='Check' style={{margin: '10px 0'}} /> }
             <Box pad='small' >
               <h3>Health Status: {this.state.Health}</h3>
             </Box>
