@@ -24,6 +24,7 @@ class FormComp extends Component {
   handleUserInput (e) {
     const name = e.target.name;
     const value = e.target.value;
+    console.log(name+": "+value);
     this.setState({ [name]: value });
   }
 
@@ -39,24 +40,18 @@ class FormComp extends Component {
 
     if(this.state.temp < 15 ){
       this.state.formErrors.tempErr = 'Temp cannot be less than 15';
-    }if(this.state.temp >= 55 ){
-      this.state.formErrors.tempErr = 'Temp cannot be greater than 55';
     }else{
       this.state.formErrors.tempErr = '';
     }
 
     if(this.state.oxygenLevel < 30 ){
       this.state.formErrors.oxygenLevelErr = 'Oxygen Level cannot be less than 30';
-    }if(this.state.oxygenLevel >= 80 ){
-      this.state.formErrors.oxygenLevelErr = 'Oxygen Level cannot be greater than 80';
     }else{
       this.state.formErrors.oxygenLevelErr = '';
     }
 
     if(this.state.humidity < 5 ){
       this.state.formErrors.humidityErr = 'Humidity cannot be less than 5';
-    }if(this.state.humidity >= 65 ){
-      this.state.formErrors.humidityErr = 'Humidity cannot be greater than 65';
     }else{
       this.state.formErrors.humidityErr = '';
     }
@@ -67,7 +62,8 @@ class FormComp extends Component {
   render() {
 
     return (
-      <Box align="center">
+      <div className="App Main">
+
         <Box direction='row' pad={{between: 'large'}} >          
           <Box>            
             <Box direction='row' pad={{between: 'small'}} >
@@ -90,7 +86,8 @@ class FormComp extends Component {
                       <h5> Temperature cannot be less than 15 </h5>
                       <h5> Humidity cannot be less than 5 </h5>
                       <h5> Oxygen Level cannot be less than 30 </h5>
-                </Box>
+                    </Box>
+
             </Box>
           </Box>
           <Form style={{maxWidth: '300px' }} >
@@ -113,7 +110,7 @@ class FormComp extends Component {
             </Box>
           </Form>          
         </Box>
-      </Box>
+      </div>
     );
   }
 }
