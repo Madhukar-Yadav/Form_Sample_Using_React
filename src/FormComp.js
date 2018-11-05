@@ -61,8 +61,7 @@ class FormComp extends Component {
   render() {
 
     return (
-      <div className="App">
-
+      <Box align="center">
         <Box direction='row' pad={{between: 'large'}} >          
           <Box>            
             <Box direction='row' pad={{between: 'small'}} >
@@ -109,7 +108,7 @@ class FormComp extends Component {
             </Box>
           </Form>          
         </Box>
-      </div>
+      </Box>
     );
   }
 }
