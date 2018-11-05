@@ -68,11 +68,9 @@ class FormComp extends Component {
   render() {
 
     return (
-      <div className="App">
-
+      <Box align="center">
         <Box direction='row' pad={{between: 'large'}} >          
-          <Box>            
-            <Box direction='row' pad={{between: 'small'}} >
+          <Box direction='row' pad={{between: 'small'}} >
                 <Box pad={{between: 'small'}} >
                     <Box separator='all' pad='small' >
                       <h4> Poor : </h4>
@@ -92,9 +90,7 @@ class FormComp extends Component {
                       <h5> Temperature cannot be less than 15 </h5>
                       <h5> Humidity cannot be less than 5 </h5>
                       <h5> Oxygen Level cannot be less than 30 </h5>
-                    </Box>
-
-            </Box>
+                </Box>
           </Box>
           <Form style={{maxWidth: '300px' }} >
             <FormField label='Temperature' error={this.state.formErrors.tempErr} >
@@ -119,7 +115,7 @@ class FormComp extends Component {
             </Box>
           </Form>          
         </Box>
-      </div>
+      </Box>
     );
   }
 }
